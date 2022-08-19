@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+    <script type="text/javascript">
+      jQuery(window).load(function($){
+        atualizaRelogio();
+      });
+    </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
+    <link rel="stylesheet" href="js/app.js">
+    <script>
+    
+    </script>
+  
+    </head>
+  <body>
+      <!--Form-->
+<div class="container">
+  <div class="card-panel grey lighten-2">
+  <div class="row">
+   <center><h2>Casa de Nossa Senhora da Paz</h2></center><br><br>
+    <form class="col s12">
+      <div class="col m4"><br><br>
+        <div class="card-panel teal">
+          <center><output id="hora" style="font-family: 'Arial black', 'Avant garde'; font-size: 24px; color:white;"></output><br></center>
+          <center><output id="data" style="font-family: 'Arial black', 'Avant garde'; font-size: 24px; color:white;"></output></center>
+        </div>
+      </div>
+      <div class="col m4"><br><br>
+        <div class="card-panel teal">
+          <label for="employee" style="color: black;">Colaborador</label>
+            <select class="form-control" id="employee">
+        </div>
+      </div>
+      <div class="col m6"><br><br>
+          <input type="button" value="Entrada" id="clockin" class="btn btn-primary" onclick="ClockIn()" style="margin-top: 10px;" />
+          <input type="button" value="Saída" id="clockout" class="btn btn-primary" onclick="ClockExit()" style="margin-top: 10px;" /><br>
+
+          <hr class="solid">
+          <label style="color: black;">Retorno/Intervalo</label><br>
+          <input type="button" value="Entrada" id="clockret" class="btn btn-primary" onclick="ClockRet()" />
+          <input type="button" value="Saida" id="clockret" class="btn btn-primary" onclick="ClockOut()" /><br><br>
+          <div class="alert alert-primary" role="alert" id="message">
+      </div>
+        
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+<!--Relógio-->
+<script>
+  function atualizaRelogio(){
+    var tempoAtual = new Date();
+
+    var vhora = tempoAtual.getHours();
+    var vminuto = tempoAtual.getMinutes();
+    var vsegundo = tempoAtual.getSeconds();
+
+    var vdia = tempoAtual.getDate();
+    var vmes = tempoAtual.getMonth()+1;
+    var vano = tempoAtual.getFullYear();
+
+    if(vdia < 10){
+      vdia = "0" + vdia;
+    }if(vmes < 10){
+      vmes = "0" + vmes;
+    }if(vhora < 10){
+      vhora = "0" + vhora;
+    }if(vminuto < 10){
+      vminuto = "0" + vminuto;
+    }if(vsegundo < 10){
+      vsegundo = "0" + vsegundo;
+    }
+    
+    dataFormat = vdia + " / " + vmes + " / " + vano;
+    horaFormat = vhora + " : " + vminuto + " : " + vsegundo;
+
+    document.getElementById("data").innerHTML = dataFormat;
+    document.getElementById("hora").innerHTML = horaFormat;
+
+    setTimeout("atualizaRelogio()", 1000);
+  }
+</script>
+</html>
